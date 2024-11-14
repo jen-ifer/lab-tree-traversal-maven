@@ -7,11 +7,10 @@ import java.util.Iterator;
  * Simple binary trees.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Sara J
+ * @author Jenifer S
  *
- * @param <T>
- *   The type of value stored in the tree.
+ * @param <T> The type of value stored in the tree.
  */
 public class BinaryTree<T> implements Iterable<T> {
 
@@ -44,8 +43,7 @@ public class BinaryTree<T> implements Iterable<T> {
   /**
    * Create a new, somewhat balanced, tree.
    *
-   * @param values
-   *   The values to put in the tree.
+   * @param values The values to put in the tree.
    */
   public BinaryTree(T[] values) {
     this.size = values.length;
@@ -59,8 +57,7 @@ public class BinaryTree<T> implements Iterable<T> {
   /**
    * Dump the tree to some output location.
    *
-   * @param pen
-   *   The output location.
+   * @param pen The output location.
    */
   public void dump(PrintWriter pen) {
     dump(pen, root, "");
@@ -93,12 +90,9 @@ public class BinaryTree<T> implements Iterable<T> {
   /**
    * Dump a portion of the tree to some output location.
    *
-   * @param pen
-   *   Where to dump the output.
-   * @param node
-   *   The node to dump.
-   * @param indent
-   *   How far to indent the dumped values.
+   * @param pen Where to dump the output.
+   * @param node The node to dump.
+   * @param indent How far to indent the dumped values.
    */
   void dump(PrintWriter pen, BinaryTreeNode<T> node, String indent) {
     if (node == null) {
@@ -112,18 +106,36 @@ public class BinaryTree<T> implements Iterable<T> {
     } // else
   } // dump
 
+  public void el01Helper(PrintWriter pen, BinaryTreeNode<T> node) {
+    BinaryTreeNode<T> next = node;
+    pen.print(next.value);
+    if (next == null) {
+      pen.print(" ");
+    } else {
+      pen.print(" ");
+
+      if (next.left != null) {
+        el01Helper(pen, next.left);
+      }
+
+      if (next.right != null) {
+        el01Helper(pen, next.right);
+      }
+    }
+  }
+
+  public void elements01(PrintWriter pen) {
+    el01Helper(pen, this.root);
+  } //
+
   /**
    * Build a tree from a subarray from lb (inclusive) to ub (exclusive).
    *
-   * @param values
-   *   The array from which to draw values.
-   * @param lb
-   *   The lower bound of the subarray (inclusive).
-   * @param ub
-   *   The upper bound of the subarray (exclusive).
+   * @param values The array from which to draw values.
+   * @param lb The lower bound of the subarray (inclusive).
+   * @param ub The upper bound of the subarray (exclusive).
    *
-   * @return
-   *   The root of the newly made tree.
+   * @return The root of the newly made tree.
    */
   BinaryTreeNode<T> makeTree(T[] values, int lb, int ub) {
     if (ub <= lb) {
